@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/jq.js"></script>
+
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/jgthms/bulma/9e1752b5/css/bulma.css">
+    <link rel="stylesheet" href="https://cssgram-cssgram.netdna-ssl.com/cssgram.min.css">
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' data: gap: https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>Room Mates</title>
+
+</head>
+<body>
+    <!-- Nav Menu -->
+    <div>
+        <nav role="navigation">
+            <div id="menuToggle">
+                <input type="checkbox" />
+                <span></span>
+                <span></span>
+                <span></span>
+                <ul id="menu">
+                    <a href="main.html"><h1>ToDo</h1></a>
+                    <br />
+                    <a href="board.html"><h1>Finances</h1></a>
+                </ul>
+            </div>
+        </nav>
+        <div><a href="/" id="logo">Room mates</a></div>
+    </div>
+    <!-- Nav Menu -->
+<!-- Carousel body
+                <div class="main-gallery">
+                  <div class="gallery-cell">...</div>
+                  <div class="gallery-cell">...</div>
+                  <div class="gallery-cell">...</div>
+                  ...
+                </div>
+-->
+    <br />
+    <div id="car" class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true }'>
+        <div class="carousel-cell" style="text-align:center;">
+            <!--ToDo page-->
+            <h1>My Finances</h1> <button class="addbutton" onclick="addbuttonPrice()">+</button>
+            <br />
+            <div id="myUL1">
+                <ul id="myUL">
+                    <li onclick="check(this)">Rent <p class="b">650$</p></li>
+                    <li onclick="check(this)">Electric <p class="b">50$</p></li>
+                    <li onclick="check(this)">Phone Bill <p class="b">60$</p></li>
+                    <li onclick="check(this)" class="checked">Gas <p class="b">80$</p></li>
+                </ul>
+            </div>
+        </div>
+        <!--ToDo page-->
+        <!--In Progress page-->
+        <div class="carousel-cell" style="text-align:center;">
+            <!--ToDo page-->
+            <h1>Mates Finances</h1> <button class="addbutton" onclick="addbutton()">+</button>
+            <br />
+            <div id="myUL1">
+                <ul id="myUL">
+                    <li onclick="check(this)">Rent <p class = "b">650$</p></li>
+                    <li onclick="check(this)" class="checked">Electric <p class="b">150$</p></li>
+                    <li onclick="check(this)" class="checked">Phone Bill <p class="b">100$</p></li>
+                    <li onclick="check(this)">Gas <p class="b">70$</p></li>
+                </ul>
+            </div>
+        </div>
+        <!--In Progress page-->
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <script>
+        
+        //prompt user for new task
+        function addbutton()
+        {
+            var person = prompt("Enter a Task:", "");
+
+            if (person != "" || person != null)
+                newElement(person);
+        }
+
+        //prompt user for new task
+        function addbuttonPrice() {
+            var person = prompt("Enter a Bill name:", "");
+            var person2 = prompt("Enter a Price:", "");
+
+            if (person != "" || person != null)
+                newElement3(person, person2);
+        }
+        
+        // Create a "close" button and append it to each list item
+        var myNodelist = document.getElementsByTagName("LI");
+        var i;
+        for (i = 0; i < myNodelist.length; i++) {
+          var span = document.createElement("SPAN");
+          var txt = document.createTextNode("\u00D7");
+          span.className = "close";
+          span.appendChild(txt);
+          myNodelist[i].appendChild(span);
+        }
+
+        // Click on a close button to hide the current list item
+        var close = document.getElementsByClassName("close");
+        var i;
+        for (i = 0; i < close.length; i++) {
+          close[i].onclick = function() {
+            var div = this.parentElement;
+            div.style.display = "none";
+          }
+        }
+        
+        function check(el)
+        {
+            el.classList.toggle('checked');
+        }
+        
+        // Create a new list item when clicking on the "Add" button
+        function newElement(person) {
+            var li = document.createElement("li");
+            var inputValue = person;
+            var t = document.createTextNode(inputValue);
+            li.appendChild(t);
+            if (inputValue === '') {
+                alert("You must write something!");
+            } else {
+                document.getElementById("myUL").appendChild(li);
+            }
+
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            li.appendChild(span);
+
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function () {
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                }
+            }
+        }
+        // Create a new list item when clicking on the "Add" button
+        function newElement2(person, person2) {
+            var li = document.createElement("li");
+            var p = document.createElement("p");
+            p.className = "b";
+            var node = document.createTextNode(person2);
+            p.appendChild(node);
+            var inputValue = person;
+            var t = document.createTextNode(inputValue);
+            li.appendChild(t);
+            if (inputValue === '') {
+                alert("You must write something!");
+            } else {
+                document.getElementById("myUL").appendChild(li);
+            }
+
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            li.appendChild(span);
+            li.appendChild(p);
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function () {
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                }
+            }
+        }
+        </script>
+    
+</body>
+</html>
