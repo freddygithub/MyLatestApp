@@ -2,6 +2,25 @@
 <html>
 
 <head>
+    <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBT5q5LcclqIIbdRuNQtvdwvPqT5C3jHio",
+            authDomain: "roommates-8ab3e.firebaseapp.com",
+            databaseURL: "https://roommates-8ab3e.firebaseio.com",
+            projectId: "roommates-8ab3e",
+            storageBucket: "roommates-8ab3e.appspot.com",
+            messagingSenderId: "525852852650"
+        };
+        firebase.initializeApp(config);
+
+        firebase.auth().useDeviceLanguage();
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+    </script>
+    <!-- Add additional services that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-auth.js"></script>
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
@@ -14,21 +33,28 @@
 
 </head>
 <body>
-
+    <div id="recaptcha-container"></div>
     <div class="login-page">
         <div class="form">
             <form class="register-form">
-                <input type="text" placeholder="name" />
-                <input type="password" placeholder="password" />
-                <input type="text" placeholder="email address" />
+                <input type="text" placeholder="Username" />
+                <input type="password" placeholder="Password" />
+                <input type="text" placeholder="Email Address" />
+                <input type="text" placeholder="Phone Number" />
                 <button>create</button>
-                <p class="message">Already registered? <a href="#">Sign In</a></p>
+                <p class="message">Already registered? <a href="#1">Sign In</a></p>
             </form>
             <form class="login-form">
-                <input type="text" placeholder="username" />
-                <input type="password" placeholder="password" />
+                <a href="#" class="google btn">
+                    <i class="fa fa-google fa-fw">
+                    </i> Login with Google+
+                </a>
+                <p>Or</p>
+                <input type="text" placeholder="Username" />
+                <input type="password" placeholder="Password" />
                 <a class="button1" href="main.html">login</a>
-                <p class="message">Not registered? <a href="#">Create an account</a></p>
+                <p class="message">Not registered? 
+                <a href="#1" onclick="hideLogin()">Create an account</a></p>
             </form>
         </div>
     </div>
@@ -36,5 +62,32 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="scripts/platformOverrides.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>
+    <script>
+        var phoneNumber;
+
+        function getPhoneNumberFromUserInput(){
+            phoneNumber = document.getElementById("phoneNumber").value;
+        }
+
+        var appVerifier = window.recaptchaVerifier;
+        firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+            .then(function (confirmationResult) {
+                // SMS sent. Prompt user to type the code from the message, then sign the
+                // user in with confirmationResult.confirm(code).
+                window.confirmationResult = confirmationResult;
+            }).catch(function (error) {
+                // Error; SMS not sent
+                // ...
+            });
+
+        function hideLogin() {
+            var x = document.getElementsByClassName("login - form");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
