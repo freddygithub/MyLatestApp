@@ -2,24 +2,8 @@
 <html>
 
 <head>
-    <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyBT5q5LcclqIIbdRuNQtvdwvPqT5C3jHio",
-            authDomain: "roommates-8ab3e.firebaseapp.com",
-            databaseURL: "https://roommates-8ab3e.firebaseio.com",
-            projectId: "roommates-8ab3e",
-            storageBucket: "roommates-8ab3e.appspot.com",
-            messagingSenderId: "525852852650"
-        };
-        firebase.initializeApp(config);
 
-        firebase.auth().useDeviceLanguage();
-        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-    </script>
-    <!-- Add additional services that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-auth.js"></script>
+    <script src="https://cdn.auth0.com/js/auth0/9.5.1/auth0.min.js"></script>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
@@ -50,11 +34,11 @@
                     </i> Login with Google+
                 </a>
                 <p>Or</p>
-                <input type="text" placeholder="Username" />
-                <input type="password" placeholder="Password" />
-                <a class="button1" href="main.html">login</a>
+                <input id="username" type="text" placeholder="Username" />
+                <input id="password" type="password" placeholder="Password" />
+                <a id="btn-login" onclick="signIn()">login</a>
                 <p class="message">Not registered? 
-                <a href="#1" onclick="hideLogin()">Create an account</a></p>
+                <a href="main.html" onclick="hideLogin()">Create an account</a></p>
             </form>
         </div>
     </div>
@@ -63,22 +47,12 @@
     <script type="text/javascript" src="scripts/platformOverrides.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>
     <script>
-        var phoneNumber;
-
-        function getPhoneNumberFromUserInput(){
-            phoneNumber = document.getElementById("phoneNumber").value;
-        }
-
-        var appVerifier = window.recaptchaVerifier;
-        firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
-            .then(function (confirmationResult) {
-                // SMS sent. Prompt user to type the code from the message, then sign the
-                // user in with confirmationResult.confirm(code).
-                window.confirmationResult = confirmationResult;
-            }).catch(function (error) {
-                // Error; SMS not sent
-                // ...
+        
+        function signIn() {
+            cordova.plugins.firebase.auth.signInWithEmailAndPassword("test@test.com", "password").then(function (userInfo) {
+                document.location.href = "http://localhost:4400/main.html";
             });
+        }
 
         function hideLogin() {
             var x = document.getElementsByClassName("login - form");

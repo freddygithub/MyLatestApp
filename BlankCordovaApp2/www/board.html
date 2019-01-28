@@ -84,7 +84,7 @@
         <!--In Progress page-->
         <div class="carousel-cell" style="text-align:center;">
             <!--ToDo page-->
-            <h1>Mates Finances</h1> <button class="addbutton" onclick="addbutton()">+</button>
+            <h1>Mates Finances</h1>
             <br />
             <div id="myUL1">
                 <ul id="myUL">
@@ -117,7 +117,7 @@
             var person2 = prompt("Enter a Price:", "");
 
             if (person != "" || person != null)
-                newElement3(person, person2);
+                newElement(person, person2);
         }
         
         // Create a "close" button and append it to each list item
@@ -147,7 +147,7 @@
         }
         
         // Create a new list item when clicking on the "Add" button
-        function newElement(person) {
+        function newElement(person, person2) {
             var li = document.createElement("li");
             var inputValue = person;
             var t = document.createTextNode(inputValue);
@@ -157,12 +157,20 @@
             } else {
                 document.getElementById("myUL").appendChild(li);
             }
+            
+            var p = document.createElement("p");
+            p.className = "b";
+            var node = document.createTextNode(person2);
+            p.appendChild(node);
+            li.appendChild(p);
 
             var span = document.createElement("SPAN");
             var txt = document.createTextNode("\u00D7");
             span.className = "close";
             span.appendChild(txt);
             li.appendChild(span);
+
+            li.onclick = function () { check(li) };
 
             for (i = 0; i < close.length; i++) {
                 close[i].onclick = function () {

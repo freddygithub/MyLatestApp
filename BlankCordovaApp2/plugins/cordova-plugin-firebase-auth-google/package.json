@@ -1,0 +1,68 @@
+{
+  "_from": "cordova-plugin-firebase-auth-google",
+  "_id": "cordova-plugin-firebase-auth-google@1.1.6",
+  "_inBundle": false,
+  "_integrity": "sha512-si/LrC04x47cedo7Gg2rj1cRkdFHA1SkwQ71tfnslFWHjLUwXjDYATqbI2kM/yQDD4/wSSu/Qao6hi6t+4yAcQ==",
+  "_location": "/cordova-plugin-firebase-auth-google",
+  "_phantomChildren": {
+    "lodash": "3.10.1",
+    "util-deprecate": "1.0.2",
+    "xmldom": "0.1.27"
+  },
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-firebase-auth-google",
+    "name": "cordova-plugin-firebase-auth-google",
+    "escapedName": "cordova-plugin-firebase-auth-google",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-firebase-auth-google/-/cordova-plugin-firebase-auth-google-1.1.6.tgz",
+  "_shasum": "a52bf8723aaa26a0a664ecca1bfee9f7d9bfc352",
+  "_spec": "cordova-plugin-firebase-auth-google",
+  "_where": "C:\\Users\\FMartinez\\source\\repos\\BlankCordovaApp2\\BlankCordovaApp2",
+  "author": {
+    "name": "Carlos \"blakgeek\" Lawton"
+  },
+  "bugs": {
+    "url": "https://github.com/blakgeek/cordova-plugin-firebase-auth-google/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "elementtree": "^0.1.6",
+    "plist": "^1.2.0",
+    "shelljs": "^0.7.2",
+    "xcode": "^0.8.9",
+    "xml2js": "^0.4.17"
+  },
+  "deprecated": false,
+  "description": "Adds support for Firebase authentication.",
+  "devDependencies": {
+    "libxmljs": "^0.18.4"
+  },
+  "homepage": "https://github.com/blakgeek/cordova-plugin-firebase-auth-google",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "firebase",
+    "authentication",
+    "auth"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-firebase-auth-google",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blakgeek/cordova-plugin-firebase-auth-google.git"
+  },
+  "scripts": {
+    "postversion": "node scripts/sync-plugin-version.js; git add plugin.xml; git commit plugin.xml -m \"v${npm_package_version}\""
+  },
+  "version": "1.1.6"
+}
